@@ -639,6 +639,24 @@ hr.divider {
   font-size: 15px;
 }
 
+/* ---------- Chips, avatar ---------- */
+
+.badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--chip);
+  color: var(--heading);
+  white-space: nowrap;
+}
+.badge--square {
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+
 .avatar {
   flex: none;
   border-radius: 50%;
@@ -728,6 +746,47 @@ hr.divider {
   border-top: 2px solid var(--divider);
   font-size: 14px;
   color: var(--muted);
+}
+
+/* ---------- Modal ---------- */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 28, 64, 0.5);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px 16px;
+  overflow-y: auto;
+  z-index: 50;
+}
+.modal {
+  width: 100%;
+  max-width: 560px;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--border);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.modal__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.modal__head h2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+.modal__actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
 }
 
 /* ---------- Admin ---------- */

@@ -3,6 +3,15 @@ export type IsoDate = string
 
 export type TipoUsuario = 'COMUM' | 'ALUNO' | 'PROFESSOR' | 'ADMINISTRADOR'
 
+export type Grau =
+  | 'TECNICO'
+  | 'TECNOLOGO'
+  | 'LICENCIATURA'
+  | 'BACHARELADO'
+  | 'POS_GRADUACAO'
+  | 'MESTRADO'
+  | 'DOUTORADO'
+
 interface Timestamps {
   createdAt: IsoDate
   updatedAt: IsoDate
@@ -52,6 +61,27 @@ export interface InstituicaoInput {
   cidade?: string
   estado?: string
   logoUrl?: string
+}
+
+export interface Curso extends Timestamps {
+  id: Uuid
+  instituicaoId: Uuid
+  nome: string
+  grau: Grau
+}
+
+export interface Disciplina extends Timestamps {
+  id: Uuid
+  instituicaoId: Uuid
+  nome: string
+  codigo: string | null
+  cargaHoraria: number | null
+}
+
+export interface DisciplinaInput {
+  nome: string
+  codigo?: string
+  cargaHoraria?: number
 }
 
 export interface PageQuery {
