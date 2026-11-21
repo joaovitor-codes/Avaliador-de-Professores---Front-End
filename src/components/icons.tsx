@@ -22,6 +22,38 @@ function Svg({ size = 16, children, ...rest }: IconProps) {
   )
 }
 
+export const IconBusca = (p: IconProps) => (
+  <Svg size={18} {...p}>
+    <circle cx="11" cy="11" r="7" />
+    <path d="m20 20-3.5-3.5" />
+  </Svg>
+)
+
+export const IconMais = (p: IconProps) => (
+  <Svg strokeWidth={2.2} {...p}>
+    <path d="M12 5v14M5 12h14" />
+  </Svg>
+)
+
+export const IconFechar = (p: IconProps) => (
+  <Svg strokeWidth={2.2} {...p}>
+    <path d="M6 6l12 12M18 6 6 18" />
+  </Svg>
+)
+
+export const IconAlerta = (p: IconProps) => (
+  <Svg size={18} {...p}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 8v5M12 16h.01" />
+  </Svg>
+)
+
+export const IconOk = (p: IconProps) => (
+  <Svg size={18} {...p}>
+    <path d="m5 12 5 5L20 7" />
+  </Svg>
+)
+
 export const IconPredio = (p: IconProps) => (
   <Svg {...p}>
     <path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6" />
