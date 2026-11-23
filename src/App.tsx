@@ -9,6 +9,7 @@ import { AdminProfessores } from './pages/admin/AdminProfessores'
 import { AdminVinculos } from './pages/admin/AdminVinculos'
 import { Inicio } from './pages/Inicio'
 import { Login } from './pages/Login'
+import { Professores } from './pages/Professores'
 import { RecuperarSenha } from './pages/RecuperarSenha'
 import { VerificarEmail } from './pages/VerificarEmail'
 
@@ -31,6 +32,7 @@ export default function App() {
               </RequireAuth>
             }
           >
+            <Route path="/professores" element={<Professores />} />
           </Route>
 
           {/* Administrador */}
