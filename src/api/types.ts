@@ -35,3 +35,26 @@ export interface Usuario extends Timestamps {
   fotoPerfilUrl: string | null
   conta: Conta
 }
+
+
+export interface Instituicao extends Timestamps {
+  id: Uuid
+  nome: string
+  sigla: string | null
+  cidade: string | null
+  estado: string | null
+  logoUrl: string | null
+}
+
+export interface InstituicaoInput {
+  nome: string
+  sigla?: string
+  cidade?: string
+  estado?: string
+  logoUrl?: string
+}
+
+export interface PageQuery {
+  page?: number
+  limit?: number
+}

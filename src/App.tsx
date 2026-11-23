@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router'
 import { AuthProvider } from './auth/AuthContext'
 import { RequireAuth } from './auth/RequireAuth'
 import { AdminLayout } from './components/AdminLayout'
+import { AdminInstituicoes } from './pages/admin/AdminInstituicoes'
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
             }
           >
             <Route index element={<Navigate to="instituicoes" replace />} />
+            <Route path="instituicoes" element={<AdminInstituicoes />} />
           </Route>
         </Routes>
       </AuthProvider>
