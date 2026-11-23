@@ -1,4 +1,12 @@
-import type { Grau, TipoUsuario } from '../api/types'
+import type { Grau, TipoUsuario, Titulacao } from '../api/types'
+
+export const TITULACOES: Record<Titulacao, string> = {
+  GRADUADO: 'Graduado',
+  ESPECIALISTA: 'Especialista',
+  MESTRE: 'Mestre',
+  DOUTOR: 'Doutor',
+  POS_DOUTOR: 'Pós-doutor',
+}
 
 export const GRAUS: Record<Grau, string> = {
   TECNICO: 'Técnico',
@@ -29,6 +37,16 @@ export function iniciais(nome: string): string {
   const primeira = partes[0][0]
   const ultima = partes.length > 1 ? partes[partes.length - 1][0] : ''
   return (primeira + ultima).toUpperCase()
+}
+
+/** 4.375 → "4,38" */
+export function formatarNota(valor: number | null | undefined, casas = 2): string {
+  if (valor === null || valor === undefined) return '—'
+  return valor.toLocaleString('pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas })
+}
+
+export function formatarData(iso: string): string {
+  return new Date(iso).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' })
 }
 
 export function plural(n: number, singular: string, pluralForm: string) {

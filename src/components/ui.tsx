@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef, type ReactNode } from 'react'
 import { Link } from 'react-router'
 import { iniciais } from '../utils/format'
-import { IconAlerta, IconFechar, IconOk } from './icons'
+import { IconAlerta, IconAvancar, IconEstrela, IconFechar, IconOk, IconVoltar } from './icons'
 
 interface LogoProps {
   para?: string
@@ -106,6 +106,64 @@ export function Campo({ label, children, dica, erro, obrigatorio, extra, classNa
         </span>
       )}
     </div>
+  )
+}
+
+export function Nota({ valor, grande = false }: { valor: string; grande?: boolean }) {
+  return (
+    <span className={`nota${grande ? ' nota--xl' : ''}`}>
+      <IconEstrela size={grande ? 28 : 20} />
+      <span>{valor}</span>
+    </span>
+  )
+}
+
+interface PaginacaoProps {
+  pagina: number
+  totalPaginas: number
+  onChange: (pagina: number) => void
+}
+
+/** Botões numerados como no protótipo, com reticências quando há muitas páginas. */
+export function Paginacao({ pagina, totalPaginas, onChange }: PaginacaoProps) {
+  if (totalPaginas <= 1) return null
+
+  const paginas: (number | '…')[] = []
+  for (let p = 1; p <= totalPaginas; p++) {
+    if (p === 1 || p === totalPaginas || Math.abs(p - pagina) <= 1) paginas.push(p)
+    else if (paginas[paginas.length - 1] !== '…') paginas.push('…')
+  }
+
+  return (
+    <nav aria-label="Paginação" className="pagination">
+      <button type="button" aria-label="Página anterior" disabled={pagina <= 1} onClick={() => onChange(pagina - 1)}>
+        <IconVoltar />
+      </button>
+      {paginas.map((p, i) =>
+        p === '…' ? (
+          <span key={`gap-${i}`} className="muted" style={{ alignSelf: 'center', padding: '0 4px' }}>
+            …
+          </span>
+        ) : (
+          <button
+            key={p}
+            type="button"
+            aria-current={p === pagina ? 'page' : undefined}
+            onClick={() => onChange(p)}
+          >
+            {p}
+          </button>
+        ),
+      )}
+      <button
+        type="button"
+        aria-label="Próxima página"
+        disabled={pagina >= totalPaginas}
+        onClick={() => onChange(pagina + 1)}
+      >
+        <IconAvancar />
+      </button>
+    </nav>
   )
 }
 

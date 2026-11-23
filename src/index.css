@@ -900,3 +900,56 @@ hr.divider {
     padding: 24px 16px;
   }
 }
+
+/* ---------- Paginação ---------- */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.pagination button {
+  min-width: 44px;
+  height: 44px;
+  border: 2px solid var(--border-input);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.pagination button[aria-current='page'] {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--on-dark);
+  font-weight: 600;
+}
+.pagination button:disabled {
+  color: #a7b2bf;
+  cursor: not-allowed;
+}
+
+
+/* ---------- Nota ---------- */
+
+.nota {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1;
+}
+.nota svg {
+  color: var(--star);
+}
+.nota--xl {
+  font-size: 52px;
+}
+

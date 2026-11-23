@@ -1,4 +1,4 @@
-import { http } from "./client";
+import { http } from './client'
 import type {
   Curso,
   Disciplina,
@@ -8,24 +8,21 @@ import type {
   InstituicaoInput,
   PageQuery,
   Uuid,
-} from "./types";
+} from './types'
 
-export const LIMITE_MAXIMO = 100;
+/** Limite máximo aceito pela API em qualquer listagem. */
+export const LIMITE_MAXIMO = 100
 
 export const instituicoesApi = {
   listar: (q: PageQuery & { nome?: string } = {}) =>
-    http.get<{ instituicoes: Instituicao[]; total: number }>(
-      "/api/instituicoes",
-      { ...q },
-    ),
+    http.get<{ instituicoes: Instituicao[]; total: number }>('/api/instituicoes', { ...q }),
   obter: (id: Uuid) => http.get<Instituicao>(`/api/instituicoes/${id}`),
-  criar: (body: InstituicaoInput) =>
-    http.post<Instituicao>("/api/instituicoes", body),
+  criar: (body: InstituicaoInput) => http.post<Instituicao>('/api/instituicoes', body),
   atualizar: (id: Uuid, body: Partial<InstituicaoInput>) =>
     http.patch<Instituicao>(`/api/instituicoes/${id}`, body),
+  /** Soft delete; remove também cursos e disciplinas. */
   remover: (id: Uuid) => http.delete(`/api/instituicoes/${id}`),
-};
-
+}
 
 export const cursosApi = {
   listar: (q: PageQuery & { instituicaoId?: Uuid; grau?: Grau; nome?: string } = {}) =>
@@ -49,6 +46,10 @@ export const disciplinasApi = {
   remover: (id: Uuid) => http.delete(`/api/disciplinas/${id}`),
 }
 
+/**
+ * Busca todas as páginas de uma listagem (usado para preencher selects).
+ * `buscar` recebe a página e devolve { itens, total }.
+ */
 export async function buscarTodos<T>(
   buscar: (page: number, limit: number) => Promise<{ itens: T[]; total: number }>,
 ): Promise<T[]> {
@@ -63,4 +64,16 @@ export async function buscarTodos<T>(
 export const todasInstituicoes = () =>
   buscarTodos((page, limit) =>
     instituicoesApi.listar({ page, limit }).then((r) => ({ itens: r.instituicoes, total: r.total })),
+  )
+
+export const todosCursos = (instituicaoId: Uuid) =>
+  buscarTodos((page, limit) =>
+    cursosApi.listar({ page, limit, instituicaoId }).then((r) => ({ itens: r.cursos, total: r.total })),
+  )
+
+export const todasDisciplinas = (instituicaoId: Uuid) =>
+  buscarTodos((page, limit) =>
+    disciplinasApi
+      .listar({ page, limit, instituicaoId })
+      .then((r) => ({ itens: r.disciplinas, total: r.total })),
   )
