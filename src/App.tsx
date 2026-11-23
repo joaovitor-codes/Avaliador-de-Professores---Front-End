@@ -1,7 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router'
 import { AuthProvider } from './auth/AuthContext'
 import { RequireAuth } from './auth/RequireAuth'
-import { AdminLayout } from './components/AdminLayout'
+import { AdminLayout } from './components/layout/AdminLayout'
 import { AdminCursos } from './pages/admin/AdminCursos'
 import { AdminInstituicoes } from './pages/admin/AdminInstituicoes'
 import { AdminProfessores } from './pages/admin/AdminProfessores'
@@ -21,8 +21,8 @@ export default function App() {
             }
           >
             <Route index element={<Navigate to="instituicoes" replace />} />
-            <Route path="cursos" element={<AdminCursos />} />
             <Route path="instituicoes" element={<AdminInstituicoes />} />
+            <Route path="cursos" element={<AdminCursos />} />
             <Route path="professores" element={<AdminProfessores />} />
           </Route>
         </Routes>

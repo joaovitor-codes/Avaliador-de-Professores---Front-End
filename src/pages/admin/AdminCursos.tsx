@@ -7,7 +7,6 @@ import { Alerta, Campo, Carregando, Modal, RodapeTabela } from '../../components
 import { GRAUS, opcional } from '../../utils/format'
 import { useCarregar } from '../../utils/useCarregar'
 
-
 const POR_PAGINA = 20
 
 type Erro = { msg: string; detalhes?: string[] } | null

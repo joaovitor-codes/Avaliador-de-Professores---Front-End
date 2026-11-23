@@ -23,21 +23,18 @@ export interface FiltroProfessores extends PageQuery {
 export const professoresApi = {
   listar: (q: FiltroProfessores = {}) =>
     http.get<{ professores: Professor[]; total: number }>('/api/professores', { ...q }),
-  /** Perfil com médias. */
   obter: (id: Uuid) => http.get<ProfessorDetalhe>(`/api/professores/${id}`),
-  /** Admin. Retorna o ID do usuário criado. E-mail repetido: 409. */
+  // retorna o id do usuário criado. e-mail repetido dá 409
   criar: (body: { name: string; email: string; password: string }) =>
     http.post<ProfessorCriado>('/api/professores', body),
-  /** Admin ou o próprio professor. */
   atualizar: (id: Uuid, body: { biografia?: string; titulacao?: Titulacao }) =>
     http.patch<Omit<Professor, 'usuario' | 'instituicoes' | 'disciplinas'>>(
       `/api/professores/${id}`,
       body,
     ),
-  /** Admin. Desativa o professor e o usuário vira COMUM. */
+  // o usuário volta a ser COMUM
   desativar: (id: Uuid) => http.delete(`/api/professores/${id}`),
 
-  // ----- Vínculos -----
   instituicoes: (professorId: Uuid) =>
     http.get<VinculoInstituicao[]>(`/api/professores/${professorId}/instituicoes`),
   vincularInstituicao: (professorId: Uuid, body: { instituicaoId: Uuid; departamento?: string }) =>
@@ -47,19 +44,17 @@ export const professoresApi = {
       `/api/professores/${professorId}/instituicoes/${instituicaoId}`,
       { departamento },
     ),
-  /** Remove também as disciplinas do professor nessa instituição. */
+  // remove as disciplinas dessa instituição também
   desvincularInstituicao: (professorId: Uuid, instituicaoId: Uuid) =>
     http.delete(`/api/professores/${professorId}/instituicoes/${instituicaoId}`),
 
   disciplinas: (professorId: Uuid) =>
     http.get<VinculoDisciplina[]>(`/api/professores/${professorId}/disciplinas`),
-  /** 400 se o professor não atua na instituição da disciplina. */
   vincularDisciplina: (professorId: Uuid, disciplinaId: Uuid) =>
     http.post<VinculoDisciplina>(`/api/professores/${professorId}/disciplinas`, { disciplinaId }),
   desvincularDisciplina: (professorId: Uuid, disciplinaId: Uuid) =>
     http.delete(`/api/professores/${professorId}/disciplinas/${disciplinaId}`),
 
-  // ----- Avaliações recebidas -----
   avaliacoes: (professorId: Uuid, q: PageQuery & { disciplinaId?: Uuid } = {}) =>
     http.get<{ avaliacoes: AvaliacaoListItem[]; total: number }>(
       `/api/professores/${professorId}/avaliacoes`,
@@ -67,10 +62,7 @@ export const professoresApi = {
     ),
 }
 
-/**
- * A API não tem rota "meu professor": percorre a listagem até achar o registro do usuário.
- * Se o back-end ganhar algo como GET /api/professores/me, troque por ela.
- */
+// não tem rota de "meu professor" na api, então procura na listagem
 export async function buscarProfessorDoUsuario(usuarioId: Uuid): Promise<Professor | null> {
   const todos = await buscarTodos((page, limit) =>
     professoresApi.listar({ page, limit }).then((r) => ({ itens: r.professores, total: r.total })),
@@ -78,7 +70,6 @@ export async function buscarProfessorDoUsuario(usuarioId: Uuid): Promise<Profess
   return todos.find((p) => p.usuarioId === usuarioId) ?? null
 }
 
-/** Todas as avaliações recebidas por um professor (percorre as páginas). */
 export const todasAvaliacoes = (professorId: Uuid) =>
   buscarTodos((page, limit) =>
     professoresApi.avaliacoes(professorId, { page, limit }).then((r) => ({ itens: r.avaliacoes, total: r.total })),
@@ -86,12 +77,7 @@ export const todasAvaliacoes = (professorId: Uuid) =>
 
 let criteriosCache: Promise<{ id: Uuid; nome: string }[]> | null = null
 
-/**
- * Critérios ativos de avaliação.
- * A API não tem rota que liste critérios e `media.porCriterio` vem vazio para quem nunca foi
- * avaliado; então pega os critérios do primeiro professor que já tenha avaliações.
- * Se o back-end ganhar algo como GET /api/criterios, troque por ela.
- */
+// a api não lista os critérios, então pega do primeiro professor que já foi avaliado
 export function buscarCriteriosAtivos(): Promise<{ id: Uuid; nome: string }[]> {
   criteriosCache ??= (async () => {
     const todos = await buscarTodos((page, limit) =>
@@ -110,9 +96,9 @@ export function buscarCriteriosAtivos(): Promise<{ id: Uuid; nome: string }[]> {
 }
 
 export const avaliacoesApi = {
-  /** Só ALUNO. 409 se já avaliou esse professor nessa disciplina. */
+  // só aluno. 409 se já avaliou nessa disciplina
   criar: (body: AvaliacaoInput) => http.post<unknown>('/api/avaliacoes', body),
-  /** Só o dono, até 24h depois de criar. */
+  // só quem criou, até 24h depois
   atualizar: (id: Uuid, body: Partial<Omit<AvaliacaoInput, 'professorId' | 'disciplinaId'>>) =>
     http.patch<unknown>(`/api/avaliacoes/${id}`, body),
   remover: (id: Uuid) => http.delete(`/api/avaliacoes/${id}`),

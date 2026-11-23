@@ -1,4 +1,3 @@
-// Ícones em traço, os mesmos do protótipo.
 import type { SVGProps } from 'react'
 
 type IconProps = SVGProps<SVGSVGElement> & { size?: number }

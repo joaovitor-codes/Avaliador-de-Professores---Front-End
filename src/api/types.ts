@@ -1,5 +1,3 @@
-// Tipos espelhando as respostas documentadas em "Rotas da API — Sistema de Avaliação de Professores".
-
 export type Uuid = string
 export type IsoDate = string
 
@@ -21,8 +19,6 @@ interface Timestamps {
   updatedAt: IsoDate
   deletedAt: IsoDate | null
 }
-
-// ---------- Auth ----------
 
 export interface Tokens {
   accessToken: string
@@ -50,8 +46,6 @@ export interface Usuario extends Timestamps {
   fotoPerfilUrl: string | null
   conta: Conta
 }
-
-// ---------- Catálogo ----------
 
 export interface Instituicao extends Timestamps {
   id: Uuid
@@ -91,8 +85,6 @@ export interface DisciplinaInput {
   cargaHoraria?: number
 }
 
-// ---------- Professores ----------
-
 export interface CriterioMedia {
   criterioId: Uuid
   nome: string
@@ -101,7 +93,6 @@ export interface CriterioMedia {
 }
 
 export interface MediaProfessor {
-  /** null enquanto o professor não tem avaliação. */
   geral: number | null
   totalAvaliacoes: number
   porCriterio: CriterioMedia[]
@@ -115,7 +106,7 @@ export interface Professor {
   usuario: {
     id: Uuid
     nome: string
-    /** Só vem para ADMINISTRADOR. */
+    // só vem pro admin
     conta?: { email: string }
   }
   instituicoes: {
@@ -125,7 +116,6 @@ export interface Professor {
   disciplinas: {
     disciplina: { id: Uuid; nome: string; codigo: string | null }
   }[]
-  /** Na lista a documentação não traz médias; no detalhe (GET /:id) sempre vem. */
   media?: MediaProfessor
 }
 
@@ -134,7 +124,7 @@ export interface ProfessorDetalhe extends Professor {
 }
 
 export interface ProfessorCriado {
-  /** ID do usuário criado (não do professor). */
+  // id do usuário, não do professor
   id: Uuid
   email: string
 }
@@ -156,11 +146,9 @@ export interface VinculoDisciplina {
   disciplina: Disciplina
 }
 
-// ---------- Avaliações ----------
-
 export interface NotaInput {
   criterioId: Uuid
-  /** 1 a 5 */
+  // de 1 a 5
   nota: number
 }
 
@@ -180,15 +168,12 @@ export interface AvaliacaoListItem {
   recomendaria: boolean | null
   createdAt: IsoDate
   updatedAt: IsoDate
-  /** null em avaliação anônima. */
   aluno: { id: Uuid; nome: string } | null
   disciplina: { id: Uuid; nome: string; codigo: string | null }
   notas: { nota: number; criterio: { id: Uuid; nome: string } }[]
-  /** true quando a avaliação é do usuário logado. */
+  // true se a avaliação for do usuário logado
   propria: boolean
 }
-
-// ---------- Paginação ----------
 
 export interface PageQuery {
   page?: number

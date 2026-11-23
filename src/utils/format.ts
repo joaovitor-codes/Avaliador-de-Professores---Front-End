@@ -30,7 +30,7 @@ export const UFS = [
   'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO',
 ]
 
-/** "Carlos Menezes da Silva" → "CS" */
+// "Carlos Menezes da Silva" -> "CS"
 export function iniciais(nome: string): string {
   const partes = nome.trim().split(/\s+/).filter(Boolean)
   if (partes.length === 0) return '?'
@@ -39,7 +39,7 @@ export function iniciais(nome: string): string {
   return (primeira + ultima).toUpperCase()
 }
 
-/** 4.375 → "4,38" */
+// 4.375 -> "4,38"
 export function formatarNota(valor: number | null | undefined, casas = 2): string {
   if (valor === null || valor === undefined) return '—'
   return valor.toLocaleString('pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas })
@@ -53,7 +53,7 @@ export function plural(n: number, singular: string, pluralForm: string) {
   return `${n.toLocaleString('pt-BR')} ${n === 1 ? singular : pluralForm}`
 }
 
-/** Campo de texto vazio vira undefined (a API trata campos opcionais ausentes). */
+// string vazia vira undefined
 export function opcional(valor: string): string | undefined {
   const v = valor.trim()
   return v === '' ? undefined : v
