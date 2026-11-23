@@ -5,6 +5,7 @@ import { AdminLayout } from './components/layout/AdminLayout'
 import { AdminCursos } from './pages/admin/AdminCursos'
 import { AdminInstituicoes } from './pages/admin/AdminInstituicoes'
 import { AdminProfessores } from './pages/admin/AdminProfessores'
+import { AdminVinculos } from './pages/admin/AdminVinculos'
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
             <Route path="instituicoes" element={<AdminInstituicoes />} />
             <Route path="cursos" element={<AdminCursos />} />
             <Route path="professores" element={<AdminProfessores />} />
+            <Route path="professores/:id" element={<AdminVinculos />} />
           </Route>
         </Routes>
       </AuthProvider>
