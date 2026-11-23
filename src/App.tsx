@@ -7,6 +7,7 @@ import { AdminCursos } from './pages/admin/AdminCursos'
 import { AdminInstituicoes } from './pages/admin/AdminInstituicoes'
 import { AdminProfessores } from './pages/admin/AdminProfessores'
 import { AdminVinculos } from './pages/admin/AdminVinculos'
+import { Inicio } from './pages/Inicio'
 import { Login } from './pages/Login'
 import { RecuperarSenha } from './pages/RecuperarSenha'
 import { VerificarEmail } from './pages/VerificarEmail'
@@ -17,6 +18,7 @@ export default function App() {
       <AuthProvider>
         <Routes>
           {/* Públicas */}
+          <Route path="/" element={<Inicio />} />
           <Route path="/login" element={<Login />} />
           <Route path="/verificar-email" element={<VerificarEmail />} />
           <Route path="/recuperar-senha" element={<RecuperarSenha />} />
