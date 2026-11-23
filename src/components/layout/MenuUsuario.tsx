@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { useAuth } from '../../auth/useAuth'
 import { TIPOS_USUARIO } from '../../utils/format'
 import { Avatar } from '../ui'
@@ -46,6 +46,16 @@ export function MenuUsuario() {
             <strong>{usuario.nome}</strong>
             {TIPOS_USUARIO[usuario.tipoUsuario]} · {usuario.conta.email}
           </div>
+          {usuario.tipoUsuario === 'PROFESSOR' && (
+            <>
+              <Link to="/meu-perfil" onClick={() => setAberto(false)}>
+                Meu painel
+              </Link>
+              <Link to="/meu-perfil/editar" onClick={() => setAberto(false)}>
+                Editar perfil
+              </Link>
+            </>
+          )}
           <button
             type="button"
             onClick={async () => {
