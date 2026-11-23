@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router'
-import { useAuth } from '../auth/useAuth'
-import { TIPOS_USUARIO } from '../utils/format'
-import { Avatar } from './ui'
+import { useAuth } from '../../auth/useAuth'
+import { TIPOS_USUARIO } from '../../utils/format'
+import { Avatar } from '../ui'
 
-/** Avatar + nome no canto direito da barra, com menu (perfil, sair). */
 export function MenuUsuario() {
   const { usuario, sair } = useAuth()
   const navigate = useNavigate()

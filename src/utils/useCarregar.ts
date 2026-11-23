@@ -7,10 +7,7 @@ interface Estado<T> {
   carregando: boolean
 }
 
-/**
- * Executa `carregar` quando as dependências mudam e guarda dados / erro / carregando.
- * Respostas antigas (de dependências anteriores) são descartadas.
- */
+// descarta a resposta antiga se as deps mudarem no meio
 export function useCarregar<T>(carregar: () => Promise<T>, deps: DependencyList) {
   const [estado, setEstado] = useState<Estado<T>>({ dados: undefined, erro: null, carregando: true })
   const versao = useRef(0)

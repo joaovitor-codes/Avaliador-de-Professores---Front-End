@@ -1,16 +1,13 @@
-// Cliente HTTP da API.
-// A sessão vive nos cookies access_token / refresh_token que o back-end grava no login,
-// então toda chamada vai com credentials: 'include'. Ao receber 401, tenta um
-// POST /auth/refresh uma única vez e repete a chamada.
+// a sessão fica nos cookies, por isso todo fetch vai com credentials: 'include'
+// se der 401 tenta o refresh uma vez e repete a requisição
 
 const BASE_URL = (import.meta.env.VITE_API_URL ?? '').replace(/\/$/, '')
 
-/** Rotas em que um 401 é resposta final (não faz sentido tentar refresh). */
+// nessas rotas 401 é erro mesmo, não adianta tentar refresh
 const SEM_REFRESH = ['/auth/sign-in', '/auth/sign-up', '/auth/refresh', '/auth/logout']
 
 export class ApiError extends Error {
   readonly status: number
-  /** Mensagens de validação do NestJS (quando `message` vem como array). */
   readonly details: string[]
 
   constructor(status: number, message: string, details: string[] = []) {
@@ -30,7 +27,6 @@ interface RequestOptions {
 
 let sessaoExpiradaListener: (() => void) | null = null
 
-/** Chamado quando o refresh falha: a sessão acabou. */
 export function onSessaoExpirada(listener: (() => void) | null) {
   sessaoExpiradaListener = listener
 }
@@ -38,7 +34,7 @@ export function onSessaoExpirada(listener: (() => void) | null) {
 let refreshEmAndamento: Promise<boolean> | null = null
 
 function tentarRefresh(): Promise<boolean> {
-  // Várias requisições podem receber 401 ao mesmo tempo; todas esperam o mesmo refresh.
+  // se várias requisições tomarem 401 juntas, todas esperam o mesmo refresh
   refreshEmAndamento ??= fetch(`${BASE_URL}/auth/refresh`, {
     method: 'POST',
     credentials: 'include',
@@ -67,9 +63,8 @@ async function lerErro(res: Response): Promise<ApiError> {
   try {
     corpo = await res.json()
   } catch {
-    // corpo vazio ou não-JSON
+    // resposta sem corpo
   }
-  // Formato padrão do NestJS: { statusCode, message: string | string[], error }
   const msg = (corpo as { message?: unknown } | null)?.message
   if (Array.isArray(msg)) {
     const details = msg.map(String)
@@ -116,7 +111,6 @@ export const http = {
   delete: (path: string) => request<void>('DELETE', path),
 }
 
-/** Texto amigável para exibir um erro qualquer na tela. */
 export function mensagemDeErro(erro: unknown, padrao = 'Algo deu errado. Tente novamente.'): string {
   if (erro instanceof ApiError) return erro.message || padrao
   return padrao

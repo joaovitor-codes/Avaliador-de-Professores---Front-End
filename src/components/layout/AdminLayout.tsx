@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { NavLink, Outlet } from 'react-router'
 import { AppBar } from './AppBar'
-import { IconExterno, IconLivro, IconPessoas, IconPredio } from './icons'
+import { IconExterno, IconLivro, IconPessoas, IconPredio } from '../icons'
 
 const classeNav = ({ isActive }: { isActive: boolean }) => `navlink${isActive ? ' active' : ''}`
 const ehCelular = () => window.matchMedia('(max-width: 720px)').matches
 
 export function AdminLayout() {
-  // No computador o ☰ recolhe o menu lateral; no celular ele abre o menu por cima do conteúdo.
+  // no pc o botão recolhe o menu, no celular abre por cima
   const [recolhido, setRecolhido] = useState(false)
   const [abertoCelular, setAbertoCelular] = useState(false)
   const fecharCelular = () => setAbertoCelular(false)

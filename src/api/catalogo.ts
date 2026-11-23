@@ -10,7 +10,6 @@ import type {
   Uuid,
 } from './types'
 
-/** Limite máximo aceito pela API em qualquer listagem. */
 export const LIMITE_MAXIMO = 100
 
 export const instituicoesApi = {
@@ -20,7 +19,7 @@ export const instituicoesApi = {
   criar: (body: InstituicaoInput) => http.post<Instituicao>('/api/instituicoes', body),
   atualizar: (id: Uuid, body: Partial<InstituicaoInput>) =>
     http.patch<Instituicao>(`/api/instituicoes/${id}`, body),
-  /** Soft delete; remove também cursos e disciplinas. */
+  // apaga os cursos e disciplinas junto
   remover: (id: Uuid) => http.delete(`/api/instituicoes/${id}`),
 }
 
@@ -46,10 +45,7 @@ export const disciplinasApi = {
   remover: (id: Uuid) => http.delete(`/api/disciplinas/${id}`),
 }
 
-/**
- * Busca todas as páginas de uma listagem (usado para preencher selects).
- * `buscar` recebe a página e devolve { itens, total }.
- */
+// pega todas as páginas, usado nos selects
 export async function buscarTodos<T>(
   buscar: (page: number, limit: number) => Promise<{ itens: T[]; total: number }>,
 ): Promise<T[]> {

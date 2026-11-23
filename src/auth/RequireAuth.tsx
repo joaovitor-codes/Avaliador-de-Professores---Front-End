@@ -7,7 +7,7 @@ import { useAuth } from './useAuth'
 
 interface Props {
   children: ReactNode
-  /** Perfis aceitos. Sem isso, basta estar logado. */
+  // sem perfis = só precisa estar logado
   perfis?: TipoUsuario[]
 }
 
