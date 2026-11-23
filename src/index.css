@@ -1114,6 +1114,36 @@ fieldset.plain {
   font-size: 52px;
 }
 
+/* ---------- Notas (entrada 1 a 5) ---------- */
+
+.estrelas {
+  display: flex;
+  gap: 4px;
+}
+.estrelas button {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  color: #c5d0dc;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+.estrelas button.on {
+  color: var(--star);
+}
+.criterio-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 /* ---------- Modal ---------- */
 
 .modal-backdrop {
