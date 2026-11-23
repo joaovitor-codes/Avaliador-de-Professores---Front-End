@@ -1114,6 +1114,163 @@ fieldset.plain {
   font-size: 52px;
 }
 
+/* ---------- Perfil do professor ---------- */
+
+.perfil-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  align-items: flex-start;
+  padding: 32px;
+}
+.perfil-head__info {
+  flex: 1 1 420px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.perfil-head__info h1 {
+  font-size: 36px;
+  font-weight: 600;
+}
+.perfil-head__bio {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-2);
+  max-width: 640px;
+  white-space: pre-line;
+}
+.perfil-head__nota {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+  text-align: right;
+}
+.pill-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+}
+
+.duas-colunas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
+}
+.duas-colunas > .principal {
+  flex: 999 1 560px;
+  min-width: 0;
+}
+.duas-colunas > .lateral {
+  flex: 1 1 320px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.criterios {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.criterio {
+  display: grid;
+  grid-template-columns: minmax(120px, 200px) minmax(0, 1fr) 56px;
+  gap: 16px;
+  align-items: center;
+}
+.criterio__nome {
+  font-size: 15px;
+  font-weight: 500;
+}
+.criterio__valor {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: right;
+}
+.bar {
+  height: 10px;
+  border-radius: 999px;
+  background: #dfe6ee;
+  overflow: hidden;
+}
+.bar > span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--primary);
+}
+
+.lista-simples {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.lista-simples li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+}
+.lista-simples li + li {
+  border-top: 2px solid var(--divider);
+}
+.lista-simples__titulo {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.inst-sigla {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: 10px;
+  background: var(--chip);
+  color: var(--text-2);
+  font-weight: 700;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+}
+
+.avaliacao {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 0;
+}
+.avaliacao + .avaliacao {
+  border-top: 2px solid var(--divider);
+}
+.avaliacao__topo {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+.avaliacao__comentario {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-2);
+  white-space: pre-line;
+}
+
 /* ---------- Notas (entrada 1 a 5) ---------- */
 
 .estrelas {
