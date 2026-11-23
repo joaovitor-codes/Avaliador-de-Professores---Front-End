@@ -98,6 +98,33 @@ npm run dev
 
 O front fica disponível em **http://localhost:5173**.
 
+O Vite repassa as chamadas para `/auth` e `/api` à API em `http://localhost:3000`. Assim o front e a API ficam na mesma origem e os cookies de sessão (`access_token` / `refresh_token`) funcionam sem configurar CORS. Se a API estiver em outro endereço, crie um `.env` a partir do `.env.example` e ajuste `API_PROXY_TARGET`.
+
+## Telas
+
+| Rota | Tela | Quem acessa |
+| --- | --- | --- |
+| `/login` | Entrar / Criar conta | Público |
+| `/verificar-email` | Código de 6 dígitos enviado por e-mail | Público |
+| `/recuperar-senha` | Pedir código e definir nova senha | Público |
+| `/professores` | Busca com filtros por instituição, curso e disciplina | Logado |
+| `/professores/:id` | Perfil, médias por critério, avaliações e avaliar | Logado (avaliar: ALUNO) |
+| `/meu-perfil` | Titulação, biografia, senha e vínculos | PROFESSOR |
+| `/admin/instituicoes` | CRUD de instituições | ADMINISTRADOR |
+| `/admin/cursos` | Cursos e disciplinas por instituição | ADMINISTRADOR |
+| `/admin/professores` | Cadastro, desativação e vínculos de professores | ADMINISTRADOR |
+
+## Estrutura
+
+```
+src/
+  api/         cliente HTTP (cookies + refresh automático) e uma função por rota da API
+  auth/        sessão do usuário (AuthProvider, useAuth, RequireAuth)
+  components/  layouts, modais e componentes de UI reutilizáveis
+  pages/       uma tela por arquivo (admin/ para a área do administrador)
+  utils/       formatação (notas, titulação, grau) e o hook useCarregar
+```
+
 ## Resumo rápido (depois da primeira vez)
 
 Com tudo já instalado e configurado, para voltar a trabalhar basta:
