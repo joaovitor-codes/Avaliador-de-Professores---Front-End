@@ -1026,6 +1026,78 @@ fieldset.plain {
   min-width: 0;
 }
 
+/* ---------- Busca de professores ---------- */
+
+.layout-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  align-items: flex-start;
+}
+.filtros {
+  flex: 1 1 260px;
+  max-width: 300px;
+  padding: 24px;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.resultados {
+  flex: 999 1 560px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.resultados__resumo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: var(--muted);
+}
+.resultados__resumo strong {
+  color: var(--text);
+}
+
+.prof-card {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  text-decoration: none;
+  color: var(--text);
+}
+.prof-card:hover {
+  border-color: var(--sky);
+  color: var(--text);
+}
+.prof-card__body {
+  flex: 1 1 320px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.prof-card__name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 18px;
+  font-weight: 600;
+}
+.prof-card__nota {
+  flex: none;
+  min-width: 120px;
+  text-align: right;
+}
+
 .nota {
   display: inline-flex;
   align-items: center;
