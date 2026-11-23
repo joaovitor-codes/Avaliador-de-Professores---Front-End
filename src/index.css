@@ -814,6 +814,218 @@ hr.divider {
   cursor: not-allowed;
 }
 
+/* ---------- Telas de autenticação ---------- */
+
+.auth-split {
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  background: var(--bg);
+}
+.auth-hero {
+  flex: 1 1 520px;
+  background: var(--navy-2);
+  color: var(--on-dark);
+  padding: 56px 64px;
+  border-right: 4px solid var(--sky);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 48px;
+}
+.auth-hero h1 {
+  color: var(--on-dark);
+  margin: 0 0 20px;
+  font-size: 52px;
+  line-height: 1.05;
+  font-weight: 600;
+  max-width: 520px;
+}
+.auth-hero h1 span {
+  color: #7fcbf0;
+}
+.auth-hero p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--on-dark-muted);
+  max-width: 520px;
+}
+.auth-hero__topo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+}
+.voltar-inicio {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: -8px 0 0 -10px;
+  padding: 8px 14px 8px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--on-dark-muted);
+  text-decoration: none;
+  transition: color 0.15s, background 0.15s;
+}
+.voltar-inicio:hover {
+  color: var(--on-dark);
+  background: rgba(255, 255, 255, 0.1);
+}
+.auth-hero__tags {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: var(--on-dark-muted);
+}
+.auth-panel {
+  flex: 1 1 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 24px;
+}
+.auth-panel__inner {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.auth-panel h2 {
+  margin-bottom: 8px;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--heading);
+}
+
+.segmented {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: #dde5ee;
+  border-radius: 10px;
+}
+.segmented button {
+  flex: 1;
+  height: 44px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+}
+.segmented button[aria-pressed='true'] {
+  background: var(--surface);
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.auth-simple {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+.auth-simple__header {
+  padding: 24px 40px;
+  display: flex;
+  align-items: center;
+}
+.auth-simple__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 24px;
+}
+.auth-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  width: 100%;
+  max-width: 880px;
+}
+.auth-steps > .card {
+  flex: 1 1 380px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.step-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: var(--on-dark);
+  font-weight: 700;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+.step-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.verify-card {
+  width: 100%;
+  max-width: 460px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  text-align: center;
+  align-items: stretch;
+}
+.verify-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto;
+  border-radius: 16px;
+  background: var(--chip);
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.code-inputs {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.code-inputs input {
+  width: 52px;
+  height: 60px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  border: 2px solid var(--border-input);
+  border-radius: 10px;
+  background: var(--surface);
+  padding: 0;
+}
+.code-inputs input:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+fieldset.plain {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
 .nota {
   display: inline-flex;
   align-items: center;

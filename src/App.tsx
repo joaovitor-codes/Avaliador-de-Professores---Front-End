@@ -7,12 +7,16 @@ import { AdminCursos } from './pages/admin/AdminCursos'
 import { AdminInstituicoes } from './pages/admin/AdminInstituicoes'
 import { AdminProfessores } from './pages/admin/AdminProfessores'
 import { AdminVinculos } from './pages/admin/AdminVinculos'
+import { Login } from './pages/Login'
 
 export default function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
         <Routes>
+          {/* Públicas */}
+          <Route path="/login" element={<Login />} />
+
           {/* Aluno e professor */}
           <Route
             element={
