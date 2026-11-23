@@ -8,6 +8,7 @@ import { AdminInstituicoes } from './pages/admin/AdminInstituicoes'
 import { AdminProfessores } from './pages/admin/AdminProfessores'
 import { AdminVinculos } from './pages/admin/AdminVinculos'
 import { Login } from './pages/Login'
+import { RecuperarSenha } from './pages/RecuperarSenha'
 import { VerificarEmail } from './pages/VerificarEmail'
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
           {/* Públicas */}
           <Route path="/login" element={<Login />} />
           <Route path="/verificar-email" element={<VerificarEmail />} />
+          <Route path="/recuperar-senha" element={<RecuperarSenha />} />
 
           {/* Aluno e professor */}
           <Route
