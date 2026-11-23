@@ -1,111 +1,450 @@
+/* Layout do protótipo "Protótipos — Avaliação de Professores" com a identidade visual da UNIFACOL
+   (cores do AcadWeb e da logo). */
+
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  /* Marca UNIFACOL */
+  --navy: #00306a; /* barra e menu do AcadWeb */
+  --navy-2: #003c6e; /* fundo da logo FacolSI */
+  --blue: #1e6297; /* azul escuro da logo */
+  --sky: #0098da; /* azul claro da logo */
+  --accent: #f39c12; /* sublinhado laranja dos títulos no AcadWeb */
+  --red: #ae192f; /* linha sob a barra do AcadWeb */
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  --bg: #ecf0f5;
+  --surface: #ffffff;
+  --surface-muted: #f5f7fa;
+  --chip: #e6eef7;
+  --text: #1f2a37;
+  --text-2: #3d4a5c;
+  --muted: #5b6878;
+  --heading: #1c4977;
+  --border: #dbe2ea;
+  --border-input: #c5d0dc;
+  --divider: #e7ecf2;
+  --primary: var(--blue);
+  --primary-hover: var(--navy);
+  --dark: var(--navy);
+  --dark-border: var(--red);
+  --on-dark: #ffffff;
+  --on-dark-muted: #c9d6e6;
+  --star: var(--accent);
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
+  --erro-bg: #fbeaec;
+  --erro-borda: #e9b9c1;
+  --erro-texto: #8a1426;
+  --ok-bg: #e5f4fb;
+  --ok-borda: #a9d8f0;
+  --ok-texto: #0b4f75;
+
+  --font: "Source Sans 3", system-ui, sans-serif;
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 16px;
+
+  font-family: var(--font);
   color: var(--text);
   background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  line-height: 1.4;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  min-width: 320px;
+}
+
+a {
+  color: var(--primary);
+}
+a:hover {
+  color: var(--dark);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--sky);
+  outline-offset: 2px;
 }
 
 h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
+h2,
+h3,
 p {
   margin: 0;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+h1,
+h2,
+h3 {
+  color: var(--heading);
 }
 
-code {
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.muted {
+  color: var(--muted);
+}
+.small {
+  font-size: 13px;
+}
+
+/* ---------- Logo ---------- */
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  text-decoration: none;
+}
+.logo img {
+  display: block;
+  width: auto;
+}
+/* Logo sobre fundo escuro: vai numa placa branca, como no AcadWeb. */
+.logo--placa {
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  padding: 4px 12px;
+}
+.logo-facolsi {
+  display: block;
+  width: 140px;
+  height: 140px;
+  border-radius: var(--radius);
+}
+
+/* ---------- Layout do site ---------- */
+
+.page {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 32px 64px;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+:root {
+  --sidebar-w: 230px;
+  --appbar-h: 50px;
+}
+
+/* Barra superior no estilo do AcadWeb: logo num bloco branco + barra azul com linha vermelha. */
+.appbar {
+  display: flex;
+  height: var(--appbar-h);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+.appbar__brand {
+  flex: 0 0 var(--sidebar-w);
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 12px;
+}
+.appbar__tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--on-dark);
+  background: var(--navy);
+}
+.appbar__bar {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 16px 0 6px;
+  background: var(--navy);
+  border-bottom: 2px solid var(--red);
+  color: var(--on-dark);
+}
+.appbar__toggle {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  color: var(--on-dark);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.appbar__toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.appbar__nav {
+  display: flex;
+  align-self: stretch;
+  gap: 2px;
+}
+.appbar__nav .navlink {
+  display: flex;
+  align-items: center;
+  border-radius: 0;
+  padding: 0 14px;
+  font-size: 14px;
+  transition: color 0.15s;
+}
+/* Na barra os links não têm fundo: só a cor do texto muda. */
+.appbar__nav .navlink.active,
+.appbar__nav .navlink:hover {
+  background: none;
+}
+.appbar__nav .navlink:hover {
+  color: #7fcbf0;
+}
+.appbar__spacer {
+  flex: 1;
+}
+.so-mobile {
+  display: none;
+}
+
+.navlink {
+  padding: 10px 14px;
+  color: var(--on-dark-muted);
+  font-weight: 500;
   font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+  text-decoration: none;
+}
+.navlink:hover {
+  color: var(--on-dark);
+  background: rgba(255, 255, 255, 0.08);
+}
+.navlink.active {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--on-dark);
+  font-weight: 600;
+}
+
+.user-menu {
+  position: relative;
+}
+.user-menu__button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  padding: 0 8px;
+  cursor: pointer;
+  color: var(--on-dark);
+  font-size: 14px;
+}
+.user-menu__button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.user-menu__button .avatar {
+  width: 30px;
+  height: 30px;
+  font-size: 12px;
+}
+.user-menu__dropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  min-width: 220px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(0, 28, 64, 0.15);
+  padding: 6px;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+}
+.user-menu__info {
+  padding: 8px 12px 10px;
+  border-bottom: 1px solid var(--divider);
+  margin-bottom: 4px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.user-menu__info strong {
+  display: block;
+  font-size: 14px;
+  color: var(--text);
+}
+.user-menu__dropdown a,
+.user-menu__dropdown button {
+  text-align: left;
+  padding: 10px 12px;
+  border: 0;
+  background: none;
+  border-radius: 4px;
+  font-size: 14px;
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+}
+.user-menu__dropdown a:hover,
+.user-menu__dropdown button:hover {
+  background: var(--chip);
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--border-input);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: girar 0.8s linear infinite;
+}
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 0;
+}
+.loading--tela {
+  min-height: 100vh;
+}
+
+.avatar {
+  flex: none;
+  border-radius: 50%;
+  background: #dce8f4;
+  color: var(--blue);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.avatar--sm {
+  width: 36px;
+  height: 36px;
+  font-size: 14px;
+}
+.avatar--md {
+  width: 56px;
+  height: 56px;
+  font-size: 18px;
+}
+.avatar--lg {
+  width: 96px;
+  height: 96px;
+  font-size: 34px;
+}
+
+/* ---------- Admin ---------- */
+
+.admin-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+.admin-body {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+}
+.admin-sidebar {
+  flex: 0 0 var(--sidebar-w);
+  width: var(--sidebar-w);
+  position: sticky;
+  top: var(--appbar-h);
+  height: calc(100vh - var(--appbar-h));
+  overflow-y: auto;
+  background: var(--navy);
+  padding: 8px 0;
+}
+.admin-sidebar nav {
+  display: flex;
+  flex-direction: column;
+}
+.admin-sidebar .navlink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  font-size: 14px;
+}
+.admin-main {
+  flex: 1;
+  min-width: 0;
+  padding: 32px;
+}
+.admin-main .page-title {
+  font-size: 32px;
+}
+@media (min-width: 721px) {
+  .admin-sidebar.recolhido {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .appbar__brand {
+    flex-basis: auto;
+    padding: 0 10px;
+  }
+  .appbar__tag {
+    display: none;
+  }
+  .so-mobile {
+    display: inline-flex;
+  }
+  .user-menu__nome {
+    display: none;
+  }
+  .admin-sidebar {
+    display: none;
+    position: fixed;
+    left: 0;
+    z-index: 25;
+    box-shadow: 4px 0 18px rgba(0, 28, 64, 0.25);
+  }
+  .admin-sidebar.aberto {
+    display: block;
+  }
+  .admin-main {
+    padding: 24px 16px;
+  }
 }
