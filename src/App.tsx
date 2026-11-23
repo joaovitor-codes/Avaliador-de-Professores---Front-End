@@ -9,6 +9,7 @@ import { AdminProfessores } from './pages/admin/AdminProfessores'
 import { AdminVinculos } from './pages/admin/AdminVinculos'
 import { Inicio } from './pages/Inicio'
 import { Login } from './pages/Login'
+import { EditarPerfil } from './pages/EditarPerfil'
 import { MeuPainel } from './pages/MeuPainel'
 import { PerfilProfessor } from './pages/PerfilProfessor'
 import { Professores } from './pages/Professores'
@@ -41,6 +42,14 @@ export default function App() {
               element={
                 <RequireAuth perfis={['PROFESSOR']}>
                   <MeuPainel />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/meu-perfil/editar"
+              element={
+                <RequireAuth perfis={['PROFESSOR']}>
+                  <EditarPerfil />
                 </RequireAuth>
               }
             />
