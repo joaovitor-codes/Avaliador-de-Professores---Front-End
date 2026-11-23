@@ -8,6 +8,7 @@ import { AdminInstituicoes } from './pages/admin/AdminInstituicoes'
 import { AdminProfessores } from './pages/admin/AdminProfessores'
 import { AdminVinculos } from './pages/admin/AdminVinculos'
 import { Login } from './pages/Login'
+import { VerificarEmail } from './pages/VerificarEmail'
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Routes>
           {/* Públicas */}
           <Route path="/login" element={<Login />} />
+          <Route path="/verificar-email" element={<VerificarEmail />} />
 
           {/* Aluno e professor */}
           <Route
